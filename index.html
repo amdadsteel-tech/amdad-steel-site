@@ -5,48 +5,48 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>إمداد ستيل | الدقة والابتكار في تشكيل المعادن</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <style>body { font-family: 'IBM Plex Sans', sans-serif; scroll-behavior: smooth; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'IBM Plex Sans', sans-serif; scroll-behavior: smooth; }
+        .industrial-shadow { box-shadow: 4px 4px 0px 0px rgba(227, 6, 19, 0.2); }
+        .blueprint-grid { background-image: linear-gradient(rgba(143, 112, 105, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(143, 112, 105, 0.08) 1px, transparent 1px); background-size: 20px 20px; }
+        .scroll-container { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .scroll-container::-webkit-scrollbar { display: none; }
+    </style>
 </head>
 <body class="bg-[#F0F2F5] text-on-surface">
 
     <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
         <div class="flex flex-row-reverse justify-between items-center w-full px-6 md:px-16 py-4 max-w-7xl mx-auto">
             <img alt="إمداد ستيل" class="h-12 w-auto object-contain" src="logo.png">
+            <nav class="hidden md:flex flex-row-reverse gap-8 font-bold text-secondary">
+                <a href="#services" class="hover:text-primary">خدماتنا</a>
+                <a href="#engineering" class="hover:text-primary">الهندسة</a>
+            </nav>
         </div>
     </header>
 
-    <main class="pt-24">
+    <main>
+        <section class="relative min-h-[85vh] flex items-center pt-20 bg-black">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover opacity-50" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"/>
+            </div>
+            <div class="relative z-10 w-full px-6 md:px-16 max-w-7xl mx-auto text-right text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">إمداد ستيل: <span class="text-primary">الدقة والابتكار</span></h1>
+                <p class="text-lg max-w-2xl mb-8">نحن نقدم حلولاً هندسية متكاملة في تشكيل الصلب والحديد.</p>
+                <a href="#services" class="bg-primary px-8 py-4 font-bold hover:bg-red-700 transition-all">اكتشف خدماتنا</a>
+            </div>
+        </section>
+
         <section class="py-16 bg-white" id="services">
             <div class="max-w-7xl mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center mb-12">إمكانياتنا وخدماتنا الصناعية</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <div class="bg-white p-4 border rounded-2xl shadow-sm">
-                        <img src="laser.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="القطع بالليزر">
-                        <h3 class="font-bold text-lg text-center">القطع بالليزر</h3>
-                    </div>
-
-                    <div class="bg-white p-4 border rounded-2xl shadow-sm">
-                        <img src="bending.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="الثني">
-                        <h3 class="font-bold text-lg text-center">الثني الهيدروليكي</h3>
-                    </div>
-
-                    <div class="bg-white p-4 border rounded-2xl shadow-sm">
-                        <img src="rolling.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="الدرفلة">
-                        <h3 class="font-bold text-lg text-center">الدرفلة والتشكيل</h3>
-                    </div>
-
-                    <div class="bg-white p-4 border rounded-2xl shadow-sm">
-                        <img src="welding.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="اللحام">
-                        <h3 class="font-bold text-lg text-center">اللحام والأرجون</h3>
-                    </div>
-
-                    <div class="bg-white p-4 border rounded-2xl shadow-sm">
-                        <img src="design.jpg" class="w-full h-48 object-cover rounded-xl mb-4" alt="التصميم">
-                        <h3 class="font-bold text-lg text-center">تصميم مخصص 3D</h3>
-                    </div>
-
+                    <div class="bg-white p-4 border rounded-2xl shadow-sm"><img src="laser.jpg" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold text-lg text-center">القطع بالليزر</h3></div>
+                    <div class="bg-white p-4 border rounded-2xl shadow-sm"><img src="bending.jpg" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold text-lg text-center">الثني الهيدروليكي</h3></div>
+                    <div class="bg-white p-4 border rounded-2xl shadow-sm"><img src="rolling.jpg" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold text-lg text-center">الدرفلة والتشكيل</h3></div>
+                    <div class="bg-white p-4 border rounded-2xl shadow-sm"><img src="welding.jpg" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold text-lg text-center">اللحام والأرجون</h3></div>
+                    <div class="bg-white p-4 border rounded-2xl shadow-sm"><img src="design.jpg" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold text-lg text-center">تصميم مخصص 3D</h3></div>
                 </div>
             </div>
         </section>
