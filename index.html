@@ -13,68 +13,16 @@
             theme: {
                 extend: {
                     "colors": {
-                        "on-secondary-fixed-variant": "#43474a",
-                        "on-secondary-container": "#616568",
-                        "inverse-surface": "#2e3132",
-                        "on-tertiary-container": "#eff0f4",
-                        "outline-variant": "#e4beb6",
                         "secondary": "#5b5f62",
-                        "on-primary-container": "#ffece8",
                         "on-primary": "#ffffff",
-                        "secondary-container": "#dfe3e6",
-                        "surface-container-highest": "#e1e3e4",
-                        "primary-fixed": "#ffdad3",
-                        "on-tertiary": "#ffffff",
-                        "inverse-primary": "#ffb4a4",
-                        "surface-variant": "#e1e3e4",
-                        "on-background": "#191c1d",
-                        "secondary-fixed-dim": "#c3c7ca",
-                        "error-container": "#ffdad6",
-                        "primary": "#E30613", /* تم تثبيت أحمر الفيراري */
-                        "primary-container": "#cc3311",
-                        "tertiary-fixed-dim": "#c5c6ca",
+                        "primary": "#E30613",
                         "on-surface": "#191c1d",
-                        "surface-container-low": "#f3f4f5",
-                        "outline": "#8f7069",
-                        "tertiary-container": "#6b6d71",
-                        "surface-container": "#edeeef",
-                        "error": "#ba1a1a",
-                        "tertiary": "#525558",
-                        "on-tertiary-fixed": "#191c1f",
-                        "tertiary-fixed": "#e1e2e6",
-                        "inverse-on-surface": "#f0f1f2",
-                        "primary-fixed-dim": "#ffb4a4",
-                        "surface-bright": "#f8f9fa",
-                        "surface-container-high": "#e7e8e9",
-                        "background": "#F0F2F5", /* رمادي فيسبوك */
-                        "on-secondary": "#ffffff",
-                        "surface": "#F0F2F5",
-                        "on-surface-variant": "#5b403a",
-                        "on-error": "#ffffff",
-                        "surface-dim": "#d9dadb",
-                        "on-error-container": "#93000a",
-                        "on-primary-fixed": "#3d0600",
-                        "secondary-fixed": "#dfe3e6",
-                        "on-secondary-fixed": "#181c1f",
-                        "surface-tint": "#b72300",
-                        "surface-container-lowest": "#ffffff",
-                        "on-tertiary-fixed-variant": "#44474a",
-                        "on-primary-fixed-variant": "#8c1800"
+                        "inverse-surface": "#2e3132"
                     },
                     "borderRadius": {
-                        "DEFAULT": "0.125rem",
                         "lg": "0.25rem",
                         "xl": "0.5rem",
                         "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "margin-desktop": "64px",
-                        "gutter": "24px",
-                        "base": "8px",
-                        "margin-mobile": "16px",
-                        "stack-sm": "12px",
-                        "stack-md": "24px",
-                        "stack-lg": "48px"
                     }
                 }
             }
@@ -82,14 +30,12 @@
     </script>
     <style>
         body { font-family: 'IBM Plex Sans', sans-serif; scroll-behavior: smooth; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .industrial-shadow { box-shadow: 4px 4px 0px 0px rgba(227, 6, 19, 0.2); }
         .blueprint-grid {
             background-image: linear-gradient(rgba(143, 112, 105, 0.08) 1px, transparent 1px), 
                               linear-gradient(90deg, rgba(143, 112, 105, 0.08) 1px, transparent 1px);
             background-size: 20px 20px;
         }
-        /* إخفاء أشرطة التصفح لتوفير تجربة سحب نظيفة وعصرية */
         .scroll-container { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
         .scroll-container::-webkit-scrollbar { display: none; }
         .scroll-container:active { cursor: grabbing; }
@@ -97,38 +43,33 @@
 </head>
 <body class="bg-[#F0F2F5] text-on-surface">
 
-    <!-- هيدر التطبيق الأصلي -->
-    <header class="fixed top-0 left-0 right-0 z-50 border-b border-secondary/20 bg-white/95 backdrop-blur-md">
-        <div class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-7xl mx-auto">
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
+        <div class="flex flex-row-reverse justify-between items-center w-full px-6 md:px-16 py-4 max-w-7xl mx-auto">
             <div class="flex items-center gap-4">
-                <img alt="إمداد ستيل" class="h-10 md:h-12 object-contain" src="1000000790.jpg" onerror="this.src='1000000790_8.jpg';">
-                <div class="hidden md:block h-8 w-[2px] bg-primary"></div>
-                <span class="hidden md:block text-xl font-bold text-primary">إمداد ستيل</span>
+                <img alt="إمداد ستيل" class="h-12 w-auto object-contain block bg-black p-1 rounded-sm" src="1000000790.jpg" onclick="location.reload()" onerror="this.style.display='none';">
             </div>
             <nav class="hidden md:flex flex-row-reverse gap-8 items-center">
                 <a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">الرئيسية</a>
                 <a class="text-secondary hover:text-primary transition-colors" href="#services">خدماتنا</a>
                 <a class="text-secondary hover:text-primary transition-colors" href="#engineering">الهندسة والتطوير</a>
                 <a class="text-secondary hover:text-primary transition-colors" href="#portfolio">أعمالنا</a>
-                <a class="text-secondary hover:text-primary transition-colors" href="tel:0555835551">اتصل بنا</a>
             </nav>
-            <a href="#portfolio" class="bg-primary text-on-primary px-6 py-2 font-semibold hover:bg-red-700 transition-all active:scale-95 rounded-sm">
+            <a href="#portfolio" class="bg-primary text-on-primary px-6 py-2 font-semibold hover:bg-red-700 transition-all rounded-sm">
                 أعمالنا
             </a>
         </div>
     </header>
 
     <main>
-        <!-- قسم الـ Hero الترحيبي الأصلي بصور الشرر الحية للمصانع -->
-        <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-inverse-surface">
+        <section class="relative min-h-[85vh] flex items-center pt-20 overflow-hidden bg-black">
             <div class="absolute inset-0 z-0">
-                <img class="w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"/>
-                <div class="absolute inset-0 bg-gradient-to-l from-inverse-surface via-transparent to-transparent"></div>
+                <img class="w-full h-full object-cover opacity-50" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"/>
+                <div class="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent"></div>
             </div>
-            <div class="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto text-right">
+            <div class="relative z-10 w-full px-6 md:px-16 max-w-7xl mx-auto text-right">
                 <div class="max-w-2xl ml-auto">
                     <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                        إمداد ستيل: <span class="text-white opacity-90">الدقة والابتكار</span> في تشكيل المعادن
+                        إمداد ستيل: <span class="text-primary">الدقة والابتكار</span> في تشكيل المعادن
                     </h1>
                     <p class="text-lg text-gray-300 mb-8 leading-relaxed">
                         نحن نقدم حلولاً هندسية متكاملة في تشكيل الصلب والحديد، نعتمد على أحدث التقنيات العالمية لضمان أعلى مستويات الجودة في المشاريع الإنشائية والصناعية.
@@ -137,68 +78,59 @@
                         <a href="#services" class="bg-primary text-on-primary px-8 py-4 font-bold hover:bg-red-700 transition-all industrial-shadow">
                             اكتشف خدماتنا
                         </a>
-                        <a href="#portfolio" class="border border-surface-variant text-white px-8 py-4 font-bold hover:bg-white/10 transition-all">
-                            مشاهدة المشاريع
-                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- قسم الخدمات الأصلي المحدث بخاصية التحكم بالسحب يميناً ويساراً مع صور حية واقعية ومستقرة -->
         <section class="py-16 bg-white" id="services">
-            <div class="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+            <div class="px-6 md:px-16 max-w-7xl mx-auto">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl font-bold text-on-surface mb-2">إمكانياتنا وخدماتنا الصناعية</h2>
                     <div class="w-20 h-1 bg-primary mx-auto"></div>
-                    <p class="text-xs text-gray-400 mt-2">يمكنك سحب وتحريك البطاقات يميناً ويساراً لاستكشاف القدرات</p>
+                    <p class="text-xs text-gray-400 mt-2">يمكنك سحب وتحريك البطاقات يميناً ويساراً بالماوس أو اللمس</p>
                 </div>
                 
                 <div class="scroll-container overflow-x-auto py-4 cursor-grab" id="draggableContainer">
                     <div class="flex gap-6 w-max px-4">
                         
-                        <!-- 1. قص الليزر -->
-                        <div class="w-72 p-6 border border-secondary/20 bg-white rounded-xl hover:border-primary transition-all group select-none shrink-0">
-                            <div class="w-full h-40 rounded-lg overflow-hidden mb-4 border border-gray-100">
+                        <div class="w-72 p-6 border border-gray-200 bg-white rounded-2xl hover:border-primary transition-all group select-none shrink-0 shadow-sm">
+                            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 border border-gray-100 bg-neutral-900">
                                 <img class="w-full h-full object-cover pointer-events-none" src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80">
                             </div>
-                            <h3 class="text-lg font-bold mb-2">القطع بالليزر</h3>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">القطع بالليزر</h3>
                             <p class="text-sm text-secondary leading-relaxed">دقة متناهية في القطع لجميع سماكات المعادن باستخدام تكنولوجيا الألياف الضوئية المتقدمة.</p>
                         </div>
 
-                        <!-- 2. ثني الأنابيب والصاج -->
-                        <div class="w-72 p-6 border border-secondary/20 bg-white rounded-xl hover:border-primary transition-all group select-none shrink-0">
-                            <div class="w-full h-40 rounded-lg overflow-hidden mb-4 border border-gray-100">
+                        <div class="w-72 p-6 border border-gray-200 bg-white rounded-2xl hover:border-primary transition-all group select-none shrink-0 shadow-sm">
+                            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 border border-gray-100 bg-neutral-900">
                                 <img class="w-full h-full object-cover pointer-events-none" src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=400&q=80">
                             </div>
-                            <h3 class="text-lg font-bold mb-2">ثني الأنابيب والصاج</h3>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">الثني الهيدروليكي</h3>
                             <p class="text-sm text-secondary leading-relaxed">تشكيل الزوايا والأبعاد بدقة مليمترية متناهية تضمن التوافق الهندسي والميكانيكي الكامل.</p>
                         </div>
 
-                        <!-- 3. الدرفلة والتشكيل -->
-                        <div class="w-72 p-6 border border-secondary/20 bg-white rounded-xl hover:border-primary transition-all group select-none shrink-0">
-                            <div class="w-full h-40 rounded-lg overflow-hidden mb-4 border border-gray-100">
+                        <div class="w-72 p-6 border border-gray-200 bg-white rounded-2xl hover:border-primary transition-all group select-none shrink-0 shadow-sm">
+                            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 border border-gray-100 bg-neutral-900">
                                 <img class="w-full h-full object-cover pointer-events-none" src="https://images.unsplash.com/photo-1565462999718-f838b38dce06?auto=format&fit=crop&w=400&q=80">
                             </div>
-                            <h3 class="text-lg font-bold mb-2">الدرفلة والتشكيل</h3>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">الدرفلة والتشكيل</h3>
                             <p class="text-sm text-secondary leading-relaxed">تحويل الصفائح والنهويات المعدنية إلى مكونات هيكلية متقدمة تلبي احتياجات المشاريع الإنشائية.</p>
                         </div>
 
-                        <!-- 4. اللحام بالأرجون -->
-                        <div class="w-72 p-6 border border-secondary/20 bg-white rounded-xl hover:border-primary transition-all group select-none shrink-0">
-                            <div class="w-full h-40 rounded-lg overflow-hidden mb-4 border border-gray-100">
+                        <div class="w-72 p-6 border border-gray-200 bg-white rounded-2xl hover:border-primary transition-all group select-none shrink-0 shadow-sm">
+                            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 border border-gray-100 bg-neutral-900">
                                 <img class="w-full h-full object-cover pointer-events-none" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=400&q=80">
                             </div>
-                            <h3 class="text-lg font-bold mb-2">اللحام بالأرجون والليزر</h3>
-                            <p class="text-sm text-secondary leading-relaxed">ربط هيكلي معتمد للمنتجات والاستانلس ستيل لضمان متانة الهياكل تحت قوى الضغط.</p>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">اللحام والأرجون</h3>
+                            <p class="text-sm text-secondary leading-relaxed">ربط هيكلي معتمد للمنتجات والاستانلس ستيل لضمان متانة الهياكل تحت قوى الضغط والأوزان.</p>
                         </div>
 
-                        <!-- 5. تصنيع مخصص حسب الطلب -->
-                        <div class="w-72 p-6 border border-secondary/20 bg-white rounded-xl hover:border-primary transition-all group select-none shrink-0">
-                            <div class="w-full h-40 rounded-lg overflow-hidden mb-4 border border-gray-100">
+                        <div class="w-72 p-6 border border-gray-200 bg-white rounded-2xl hover:border-primary transition-all group select-none shrink-0 shadow-sm">
+                            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 border border-gray-100 bg-neutral-900">
                                 <img class="w-full h-full object-cover pointer-events-none" src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80">
                             </div>
-                            <h3 class="text-lg font-bold mb-2">تصنيع متكامل حسب الطلب</h3>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">تصنيع متكامل مخصص</h3>
                             <p class="text-sm text-secondary leading-relaxed">حلول مخصصة وتصاميم ثلاثية الأبعاد (3D) قبل البدء الفعلي لتصنيع القوالب والمحاقن والمظلات.</p>
                         </div>
 
@@ -207,45 +139,32 @@
             </div>
         </section>
 
-        <!-- قسم المخططات الهندسية الأصلي (Blueprint Grid) -->
-        <section class="py-16 bg-surface-container-low blueprint-grid overflow-hidden" id="engineering">
-            <div class="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+        <section class="py-16 bg-gray-50 blueprint-grid overflow-hidden" id="engineering">
+            <div class="px-6 md:px-16 max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
                 <div class="w-full md:w-1/2 text-right">
                     <h2 class="text-3xl font-bold text-on-surface mb-4">التصميم والتطوير الهندسي</h2>
                     <p class="text-base text-secondary mb-6 leading-relaxed">
                         نحن لا نصنع الحديد فحسب، بل نصممه بدقة. نستخدم أحدث برامج CAD/CAM لإنشاء نماذج ثلاثية الأبعاد دقيقة تضمن كفاءة التنفيذ وتقليل الهدر في المواد.
                     </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-4 justify-start flex-row-reverse">
-                            <span class="material-symbols-outlined text-primary">check_circle</span>
-                            <span class="font-medium">تحليل هيكلي كامل للمخططات الفنية</span>
-                        </li>
-                        <li class="flex items-center gap-4 justify-start flex-row-reverse">
-                            <span class="material-symbols-outlined text-primary">check_circle</span>
-                            <span class="font-medium">نماذج ثلاثية الأبعاد دقيقة المقاييس</span>
-                        </li>
-                    </ul>
                     <a href="tel:0555835551" class="border-2 border-primary text-primary px-8 py-3 font-bold hover:bg-primary hover:text-white transition-all">تحدث إلى مهندس مباشر</a>
                 </div>
                 <div class="w-full md:w-1/2">
-                    <div class="relative p-4 bg-white shadow-2xl border border-secondary/10 rounded-xl">
-                        <img class="w-full aspect-video object-cover rounded-lg" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"/>
+                    <div class="relative p-4 bg-white shadow-2xl border border-gray-200 rounded-2xl">
+                        <img class="w-full aspect-video object-cover rounded-xl" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"/>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- قسم أعمالنا (سجل المشاريع المنفذة المربوط سحابياً) -->
         <section class="py-16 bg-[#F0F2F5]" id="portfolio">
-            <div class="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+            <div class="px-6 md:px-16 max-w-7xl mx-auto">
                 <div class="text-right mb-10">
                     <h2 class="text-3xl font-bold text-on-surface border-r-4 border-primary pr-4">مشاريعنا المنفذة (أعمالنا)</h2>
-                    <p class="text-sm text-secondary mt-1">سجل التوثيق الميداني للمنتجات والهياكل المعدنية التي تم تسليمها.</p>
+                    <p class="text-sm text-secondary mt-1">سجل التوثيق الميداني للمنتجات والهياكل المعدنية التي يتم رفعها من لوحة التحكم.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cloudflareDynamicGrid">
-                    <!-- مشروع مدمج أصلي مستقر -->
-                    <div class="group relative overflow-hidden bg-white border border-secondary/10 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div class="group relative overflow-hidden bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all">
                         <img alt="الهياكل المعدنية للمستودعات العملاقة" class="w-full aspect-[16/9] object-cover" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80"/>
                         <div class="p-6 text-right">
                             <h3 class="text-xl font-bold text-on-surface mb-2">الهياكل المعدنية للمستودعات العملاقة</h3>
@@ -262,7 +181,7 @@
     </footer>
 
     <script>
-        // تفعيل آلية السحب يمين ويسار للبطاقات
+        // سكربت السحب التفاعلي
         const slider = document.getElementById('draggableContainer');
         let isDown = false; let startX; let scrollLeft;
         slider.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
@@ -270,7 +189,7 @@
         slider.addEventListener('mouseup', () => { isDown = false; });
         slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; });
 
-        // قراءة المشاريع المرفوعة من صفحة الإدارة السرية
+        // قراءة المشاريع المرفوعة من الإدارة بشكل فوري
         window.addEventListener('load', function() {
             const storedDb = localStorage.getItem('cloudflare_amdad_db');
             if (storedDb) {
@@ -278,7 +197,7 @@
                 const dynamicGrid = document.getElementById('cloudflareDynamicGrid');
                 projects.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'group relative overflow-hidden bg-white border border-secondary/10 rounded-2xl shadow-sm hover:shadow-md transition-all';
+                    card.className = 'group relative overflow-hidden bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all';
                     card.innerHTML = `
                         <img class="w-full aspect-[16/9] object-cover" src="${p.image}" alt="${p.title}">
                         <div class="p-6 text-right">
