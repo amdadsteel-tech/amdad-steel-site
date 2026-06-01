@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>لوحة تحكم إمداد ستيل</title>
-    <style>body { font-family: sans-serif; padding: 20px; text-align: center; } input, button { display: block; margin: 10px auto; width: 80%; padding: 10px; }</style>
 </head>
 <body>
     <h2>رفع صور المشاريع</h2>
     <input type="file" id="fileInput" accept="image/*">
+    <input type="text" id="descInput" placeholder="اكتب وصف الصورة هنا...">
     <button onclick="uploadImage()">رفع وحفظ</button>
+    <p id="status"></p>
     <script>
         async function uploadImage() {
             const file = document.getElementById('fileInput').files[0];
+            const desc = document.getElementById('descInput').value;
+            const status = document.getElementById('status');
+            if(!file) return alert("اختر صورة أولاً");
+            status.innerText = "جاري الرفع...";
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('desc', desc);
             const res = await fetch('/api/upload', { method: 'POST', body: formData });
-            const data = await res.json();
-            alert('تم الرفع بنجاح! الرابط: ' + data.url);
+            if(res.ok) { status.innerText = "تم الرفع بنجاح!"; }
+            else { status.innerText = "حدث خطأ."; }
         }
     </script>
 </body>
