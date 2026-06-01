@@ -30,6 +30,7 @@
     </script>
     <style>
         body { font-family: 'IBM Plex Sans', sans-serif; scroll-behavior: smooth; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .industrial-shadow { box-shadow: 4px 4px 0px 0px rgba(227, 6, 19, 0.2); }
         .blueprint-grid {
             background-image: linear-gradient(rgba(143, 112, 105, 0.08) 1px, transparent 1px), 
@@ -46,7 +47,7 @@
     <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
         <div class="flex flex-row-reverse justify-between items-center w-full px-6 md:px-16 py-4 max-w-7xl mx-auto">
             <div class="flex items-center gap-4">
-                <img alt="إمداد ستيل" class="h-12 w-auto object-contain block bg-black p-1 rounded-sm" src="1000000790.jpg" onclick="location.reload()" onerror="this.style.display='none';">
+                <img alt="إمداد ستيل" class="h-12 w-auto object-contain block" src="logo.png" onclick="location.reload()" onerror="this.style.display='none';">
             </div>
             <nav class="hidden md:flex flex-row-reverse gap-8 items-center">
                 <a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">الرئيسية</a>
@@ -181,7 +182,7 @@
     </footer>
 
     <script>
-        // سكربت السحب التفاعلي
+        // سكربت السحب التفاعلي للبطاقات يميناً ويساراً
         const slider = document.getElementById('draggableContainer');
         let isDown = false; let startX; let scrollLeft;
         slider.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
@@ -189,7 +190,7 @@
         slider.addEventListener('mouseup', () => { isDown = false; });
         slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; });
 
-        // قراءة المشاريع المرفوعة من الإدارة بشكل فوري
+        // قراءة وجلب المشاريع المرفوعة من الإدارة بشكل فوري لتعرض تحت "أعمالنا"
         window.addEventListener('load', function() {
             const storedDb = localStorage.getItem('cloudflare_amdad_db');
             if (storedDb) {
