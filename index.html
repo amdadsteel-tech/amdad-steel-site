@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --md-sys-color-background: #F0F2F5; /* رمادي ناعم مريح للعين */
-      --md-sys-color-primary: #E30613;    /* أحمر فيراري عصري */
+      --md-sys-color-background: #F0F2F5; /* رمادي فيسبوك ناعم */
+      --md-sys-color-primary: #E30613;    /* أحمر فيراري */
       --md-sys-color-surface: #FFFFFF;
       --md-sys-color-on-surface: #1C1E21;
       --md-sys-color-on-surface-variant: #65676B;
@@ -18,15 +18,13 @@
       --md-shape-corner-medium: 12px;
       --md-shape-corner-full: 999px;
       
-      /* ظلال ديناميكية متجاوبة لأسلوب Material 3 */
       --md-elevation-1: 0px 4px 12px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02);
       --md-elevation-3: 0px 16px 36px 4px rgba(227, 6, 19, 0.08), 0px 4px 12px 0px rgba(0, 0, 0, 0.03);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-    body { background: var(--md-sys-color-background); color: var(--md-sys-color-on-surface); min-height: 100vh; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; }
+    body { background: var(--md-sys-color-background); color: var(--md-sys-color-on-surface); min-height: 100vh; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; scroll-behavior: smooth; overflow-x: hidden; }
 
-    /* أنيميشن التفاعل الميكانيكي: خروج العبارات من العدم */
     @keyframes wordsFromNothing {
       0% { opacity: 0; transform: translateY(35px) scale(0.95); filter: blur(10px); }
       100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
@@ -34,68 +32,99 @@
 
     .container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 30px; }
 
-    /* شريط التطبيق العلوي الاحترافي */
-    .top-app-bar { background: var(--md-sys-color-surface); padding: 16px 28px; border-radius: var(--md-shape-corner-medium); box-shadow: var(--md-elevation-1); display: flex; justify-content: space-between; align-items: center; }
-    .brand-section { display: flex; align-items: center; gap: 15px; }
-    .brand-logo-img { height: 50px; width: auto; object-fit: contain; }
-    .btn-ferrari { background: var(--md-sys-color-primary); color: #fff; padding: 12px 28px; border-radius: var(--md-shape-corner-full); font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(227, 6, 19, 0.2); transition: 0.25s cubic-bezier(0.2, 0, 0, 1); }
+    /* هيدر التطبيق باللون الأسود الكامل لإبراز شعار إمداد ستيل المرفوع */
+    .top-app-bar { background: #000000; padding: 12px 28px; border-radius: var(--md-shape-corner-medium); box-shadow: var(--md-elevation-1); display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .brand-section { display: flex; align-items: center; }
+    .brand-logo-img { height: 60px; width: auto; object-fit: contain; display: block; }
+    
+    .nav-buttons { display: flex; align-items: center; gap: 12px; }
+    .btn-nav { color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 12px 24px; border-radius: var(--md-shape-corner-full); transition: 0.2s ease; border: 1px solid #333333; background: #111111; }
+    .btn-nav:hover { background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: #FFFFFF; }
+    
+    .btn-ferrari { background: var(--md-sys-color-primary); color: #fff; padding: 12px 28px; border-radius: var(--md-shape-corner-full); font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(227, 6, 19, 0.2); transition: 0.25s cubic-bezier(0.2, 0, 0, 1); border: none; cursor: pointer; }
     .btn-ferrari:hover { background: #b8050f; transform: scale(1.02); box-shadow: 0 6px 20px rgba(227, 6, 19, 0.3); }
 
-    /* قسم البطل (Hero Section) المدمج بصورة قص الحديد الحية */
+    /* قسم الواجهة الترحيبية بصورة رئيسية حية لشرر الحديد */
     .hero-panel { 
       position: relative; 
-      min-height: 450px; 
+      min-height: 440px; 
       border-radius: var(--md-shape-corner-extra-large); 
       overflow: hidden; 
       box-shadow: var(--md-elevation-1);
-      background: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
+      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
       display: flex;
       align-items: flex-end;
     }
-    .hero-overlay { 
-      position: absolute; 
-      top: 0; left: 0; width: 100%; height: 100%; 
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.2) 100%); 
-      z-index: 1;
-    }
-    .hero-text-content { position: relative; z-index: 2; padding: 50px; color: #ffffff; width: 100%; }
+    .hero-text-content { padding: 50px; color: #ffffff; width: 100%; z-index: 2; }
     .hero-text-content h2 { font-size: 2.8rem; font-weight: 900; line-height: 1.3; margin-bottom: 15px; }
     .hero-text-content h2 span { color: var(--md-sys-color-primary); display: inline-block; animation: wordsFromNothing 1.2s cubic-bezier(0.05, 0.7, 0.1, 1) forwards; }
     .hero-text-content p { color: #e4e6eb; font-size: 1.15rem; line-height: 1.65; max-width: 750px; opacity: 0; animation: wordsFromNothing 1.2s cubic-bezier(0.05, 0.7, 0.1, 1) 0.3s forwards; }
 
-    /* تبويب استعراض المشاريع والأعمال المرفوعة */
-    .section-title { font-size: 1.6rem; font-weight: 900; color: var(--md-sys-color-on-surface); border-right: 5px solid var(--md-sys-color-primary); padding-right: 15px; margin-top: 10px; }
-    
-    .grid-m3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    
-    /* بطاقات تفاعلية بالمنطق الفيزيائي للظلال والارتفاع */
+    .section-title { font-size: 1.6rem; font-weight: 900; color: var(--md-sys-color-on-surface); border-right: 5px solid var(--md-sys-color-primary); padding-right: 15px; margin-top: 15px; }
+
+    /* حاوية السحب يمين ويسار التفاعلية للبطاقات */
+    .scroll-container { 
+      width: 100%; 
+      overflow-x: auto; 
+      padding: 20px 5px; 
+      cursor: grab; 
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    .scroll-container:active { cursor: grabbing; }
+
+    .scroll-track { display: flex; gap: 24px; width: max-content; padding-left: 20px; }
+
+    /* تصميم البطاقات الصناعية بالصور المعبرة والواقعية من الإنترنت */
     .m3-card { 
       background: var(--md-sys-color-surface); 
-      padding: 24px; 
+      padding: 20px; 
+      width: 320px;
       border-radius: var(--md-shape-corner-extra-large); 
       box-shadow: var(--md-elevation-1); 
       border: 1px solid var(--md-sys-color-outline-variant); 
       display: flex;
       flex-direction: column;
       gap: 14px;
+      user-select: none;
       transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s cubic-bezier(0.2, 0, 0, 1);
     }
     .m3-card:hover { 
-      transform: translateY(-6px); 
+      transform: translateY(-8px); 
       box-shadow: var(--md-elevation-3); 
       border-color: var(--md-sys-color-primary); 
     }
-    .card-image-wrapper { width: 100%; height: 200px; border-radius: var(--md-shape-corner-medium); overflow: hidden; background: #e4e6eb; }
-    .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
     
-    .card-info h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--md-sys-color-on-surface); }
-    .card-info p { color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; line-height: 1.6; }
-    .card-tag { display: inline-block; background: rgba(227, 6, 19, 0.08); color: var(--md-sys-color-primary); padding: 4px 12px; border-radius: var(--md-shape-corner-full); font-size: 0.8rem; font-weight: 700; align-self: flex-start; }
+    .card-image-wrapper {
+      width: 100%;
+      height: 170px;
+      border-radius: var(--md-shape-corner-medium);
+      overflow: hidden;
+      background: #e4e6eb;
+    }
+    .card-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .m3-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--md-sys-color-on-surface); }
+    .m3-card p { color: var(--md-sys-color-on-surface-variant); font-size: 0.92rem; line-height: 1.6; text-align: justify; }
+
+    /* شبكة معرض الأعمال الميدانية */
+    .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .project-card { background: var(--md-sys-color-surface); padding: 24px; border-radius: var(--md-shape-corner-extra-large); box-shadow: var(--md-elevation-1); border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 14px; transition: 0.3s ease; }
+    .project-card:hover { transform: translateY(-6px); box-shadow: var(--md-elevation-3); border-color: var(--md-sys-color-primary); }
+    .project-img-wrapper { width: 100%; height: 210px; border-radius: var(--md-shape-corner-medium); overflow: hidden; background: #e4e6eb; }
+    .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
     @media (max-width: 768px) {
-      .top-app-bar { flex-direction: column; gap: 15px; text-align: center; }
-      .hero-text-content { padding: 25px; text-align: center; }
-      .hero-text-content h2 { font-size: 1.8rem; }
+      .top-app-bar { flex-direction: column; gap: 15px; text-align: center; padding: 20px; }
+      .nav-buttons { width: 100%; justify-content: center; }
+      .hero-text-content { padding: 30px; text-align: center; }
+      .hero-text-content h2 { font-size: 1.9rem; }
     }
   </style>
 </head>
@@ -104,55 +133,119 @@
   <div class="container">
     <header class="top-app-bar">
       <div class="brand-section">
-        <img src="1000000790.jpg" alt="إمداد ستيل اللوجو الرسمي" class="brand-logo-img">
+        <img src="1000000790.jpg" alt="إمداد ستيل" class="brand-logo-img">
       </div>
-      <a href="tel:0555835551" class="btn-ferrari">📞 اتصل بنا المبيعات</a>
+      <div class="nav-buttons">
+        <a href="#ourWorksSection" class="btn-nav">أعمالنا</a>
+        <a href="tel:0555835551" class="btn-ferrari">اتصل بنا</a>
+      </div>
     </header>
 
     <section class="hero-panel">
-      <div class="hero-overlay"></div>
       <div class="hero-text-content">
-        <h2><span>هندسة وتتشكيل المعادن،</span><br>صلابة متناهية في التنفيذ الإنشائي</h2>
-        <p>نلتزم بتقديم جودة عالية ودقة متناهية في التنفيذ، بدءاً من مرحلة التصميم ثلاثي الأبعاد (3D) لضمان تفاصيل القياسات الفنية وحتى تسليم المنتج النهائي للمصانع والمقاولين الإنشائيين.</p>
+        <h2><span>هندسة وتشكيل الحديد،</span><br>صلابة وجودة مطلقة في التنفيذ</h2>
+        <p>نلتزم بتقديم جودة عالية ودقة في التنفيذ، بدءاً من مرحلة التصميم وحتى المنتج النهائي. نضع الابتكار والصلابة الهندسية في خدمة مشاريعكم الإنشائية والصناعية الكبرى.</p>
       </div>
     </section>
 
-    <h3 class="section-title">سجل أعمالنا ومشاريعنا الصناعية</h3>
-    <section class="grid-m3" id="liveProjectsShowcase">
-      <div class="m3-card">
-        <div class="card-image-wrapper">
-          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80" alt="قص الحديد">
+    <h3 class="section-title">إمكانياتنا وخدماتنا الصناعية</h3>
+    <div class="scroll-container" id="draggableContainer">
+      <div class="scroll-track">
+        
+        <div class="m3-card">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" alt="قص الليزر للحديد">
+          </div>
+          <h3>قص الليزر</h3>
+          <p>تميز وتفوق واضح في قص الليزر عالي الدقة بمختلف السماكات والأشكال الهندسية المطابقة للرسومات الفنية المعتمدة.</p>
         </div>
-        <div class="card-tag">إمكانيات أساسية</div>
-        <div class="card-info">
-          <h3>أعمال خدمات قص الليزر</h3>
-          <p>تقنيات متقدمة مخصصة لقص الصاج والحديد بدقة ميكانيكية متناهية توافق الرسومات الفنية المعتمدة للمهندسين والمصانع.</p>
+        
+        <div class="m3-card">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=400&q=80" alt="ماكينة ثني الأنابيب والصاج">
+          </div>
+          <h3>ثني الأنابيب</h3>
+          <p>إمكانيات متطورة ومتقدمة لتنفيذ أعمال ثني وتشكيل الأنابيب المعدنية والصاج والنهويات بمختلف الأقطار والزوايا الهندسية.</p>
+        </div>
+        
+        <div class="m3-card">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1565462999718-f838b38dce06?auto=format&fit=crop&w=400&q=80" alt="درفلة وتشكيل المعادن">
+          </div>
+          <h3>الدرفلة والتشكيل</h3>
+          <p>خدمات متكاملة لدرفلة وتشكيل المعادن والمنتجات الإنشائية المتعددة لتغطية أدق تفاصيل ومقاييس المشاريع الصناعية حسب الطلب.</p>
+        </div>
+        
+        <div class="m3-card">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=400&q=80" alt="اللحام بالأرجون والليزر الصناعي">
+          </div>
+          <h3>اللحام بالأرجون والليزر</h3>
+          <p>أعمال لحام احترافية فائقة القوة والمتانة لمنتجات الاستانلس ستيل والحديد تحت إشراف هندسي يضمن تحمل ضغوط الأعمال الإنشائية.</p>
+        </div>
+        
+        <div class="m3-card">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" alt="التصاميم والحلول الهندسية المخصصة">
+          </div>
+          <h3>تصنيع متكامل حسب الطلب</h3>
+          <p>حلول معدنية وهندسية شاملة تتضمن توفير تصميم ثلاثي الأبعاد (3D) قبل البدء الفعلي لتصنيع القوالب الخرسانية، المحاقن، والمظلات.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <h3 class="section-title" id="ourWorksSection">معرض المشاريع والأعمال الميدانية</h3>
+    <section class="showcase-grid" id="cloudflareDynamicGrid">
+      <div class="project-card">
+        <div class="project-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80" alt="توثيق أعمال إمداد">
+        </div>
+        <div class="project-card-info">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; margin-top:10px;">مشروع تصنيع الهياكل الإنشائية</h3>
+          <p style="color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; line-height: 1.6;">تنفيذ وتجهيز القوالب والقطع المعدنية الثقيلة للمباني والمصانع بالاعتماد على دقة قص الليزر المتطور واللحام بالأرجون عالي المتانة.</p>
         </div>
       </div>
     </section>
   </div>
 
   <script>
-    // جلب ديناميكي فوري من مصفوفة التخزين السحابي الموحد لعرض المشاريع المرفوعة فوراً للعملاء
+    // تفعيل خاصية السحب يمين ويسار بالماوس وللمس والشاشات الذكية
+    const slider = document.getElementById('draggableContainer');
+    let isDown = false; let startX; let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => { isDown = false; });
+    slider.addEventListener('mouseup', () => { isDown = false; });
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // جلب ديناميكي فوري وقراءة المشاريع المرفوعة من لوحة التحكم السرية
     window.addEventListener('load', function() {
-      const storedData = localStorage.getItem('cloudflare_amdad_db');
-      if (storedData) {
-        const projects = JSON.parse(storedData);
-        const showcaseGrid = document.getElementById('liveProjectsShowcase');
+      const storedDb = localStorage.getItem('cloudflare_amdad_db');
+      if (storedDb) {
+        const projects = JSON.parse(storedDb);
+        const dynamicGrid = document.getElementById('cloudflareDynamicGrid');
         projects.forEach(p => {
           const card = document.createElement('div');
-          card.className = 'm3-card';
+          card.className = 'project-card';
           card.innerHTML = `
-            <div class="card-image-wrapper">
+            <div class="project-img-wrapper">
               <img src="${p.image}" alt="${p.title}">
             </div>
-            <div class="card-tag">${p.tag}</div>
-            <div class="card-info">
-              <h3>${p.title}</h3>
-              <p>${p.description}</p>
+            <div class="project-card-info">
+              <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; margin-top:10px;">${p.title}</h3>
+              <p style="color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; line-height: 1.6;">${p.description}</p>
             </div>
           `;
-          showcaseGrid.insertBefore(card, showcaseGrid.firstChild);
+          dynamicGrid.insertBefore(card, dynamicGrid.firstChild);
         });
       }
     });
