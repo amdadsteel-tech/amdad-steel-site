@@ -1,254 +1,181 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>إمداد ستيل | AMDAD STEEL – منصة التشكيل الصناعي</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --md-sys-color-background: #F0F2F5; /* رمادي فيسبوك ناعم */
-      --md-sys-color-primary: #E30613;    /* أحمر فيراري */
-      --md-sys-color-surface: #FFFFFF;
-      --md-sys-color-on-surface: #1C1E21;
-      --md-sys-color-on-surface-variant: #65676B;
-      --md-sys-color-outline-variant: #E4E6EB;
-      
-      --md-shape-corner-extra-large: 28px;
-      --md-shape-corner-medium: 12px;
-      --md-shape-corner-full: 999px;
-      
-      --md-elevation-1: 0px 4px 12px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02);
-      --md-elevation-3: 0px 16px 36px 4px rgba(227, 6, 19, 0.08), 0px 4px 12px 0px rgba(0, 0, 0, 0.03);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-    body { background: var(--md-sys-color-background); color: var(--md-sys-color-on-surface); min-height: 100vh; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; scroll-behavior: smooth; overflow-x: hidden; }
-
-    @keyframes wordsFromNothing {
-      0% { opacity: 0; transform: translateY(35px) scale(0.95); filter: blur(10px); }
-      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-
-    .container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 30px; }
-
-    /* هيدر التطبيق باللون الأسود الكامل لإبراز شعار إمداد ستيل المرفوع */
-    .top-app-bar { background: #000000; padding: 12px 28px; border-radius: var(--md-shape-corner-medium); box-shadow: var(--md-elevation-1); display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-    .brand-section { display: flex; align-items: center; }
-    .brand-logo-img { height: 60px; width: auto; object-fit: contain; display: block; }
-    
-    .nav-buttons { display: flex; align-items: center; gap: 12px; }
-    .btn-nav { color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 12px 24px; border-radius: var(--md-shape-corner-full); transition: 0.2s ease; border: 1px solid #333333; background: #111111; }
-    .btn-nav:hover { background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: #FFFFFF; }
-    
-    .btn-ferrari { background: var(--md-sys-color-primary); color: #fff; padding: 12px 28px; border-radius: var(--md-shape-corner-full); font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(227, 6, 19, 0.2); transition: 0.25s cubic-bezier(0.2, 0, 0, 1); border: none; cursor: pointer; }
-    .btn-ferrari:hover { background: #b8050f; transform: scale(1.02); box-shadow: 0 6px 20px rgba(227, 6, 19, 0.3); }
-
-    /* قسم الواجهة الترحيبية بصورة رئيسية حية لشرر الحديد */
-    .hero-panel { 
-      position: relative; 
-      min-height: 440px; 
-      border-radius: var(--md-shape-corner-extra-large); 
-      overflow: hidden; 
-      box-shadow: var(--md-elevation-1);
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
-      display: flex;
-      align-items: flex-end;
-    }
-    .hero-text-content { padding: 50px; color: #ffffff; width: 100%; z-index: 2; }
-    .hero-text-content h2 { font-size: 2.8rem; font-weight: 900; line-height: 1.3; margin-bottom: 15px; }
-    .hero-text-content h2 span { color: var(--md-sys-color-primary); display: inline-block; animation: wordsFromNothing 1.2s cubic-bezier(0.05, 0.7, 0.1, 1) forwards; }
-    .hero-text-content p { color: #e4e6eb; font-size: 1.15rem; line-height: 1.65; max-width: 750px; opacity: 0; animation: wordsFromNothing 1.2s cubic-bezier(0.05, 0.7, 0.1, 1) 0.3s forwards; }
-
-    .section-title { font-size: 1.6rem; font-weight: 900; color: var(--md-sys-color-on-surface); border-right: 5px solid var(--md-sys-color-primary); padding-right: 15px; margin-top: 15px; }
-
-    /* حاوية السحب يمين ويسار التفاعلية للبطاقات */
-    .scroll-container { 
-      width: 100%; 
-      overflow-x: auto; 
-      padding: 20px 5px; 
-      cursor: grab; 
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .scroll-container::-webkit-scrollbar { display: none; }
-    .scroll-container:active { cursor: grabbing; }
-
-    .scroll-track { display: flex; gap: 24px; width: max-content; padding-left: 20px; }
-
-    /* تصميم البطاقات الصناعية بالصور المعبرة والواقعية من الإنترنت */
-    .m3-card { 
-      background: var(--md-sys-color-surface); 
-      padding: 20px; 
-      width: 320px;
-      border-radius: var(--md-shape-corner-extra-large); 
-      box-shadow: var(--md-elevation-1); 
-      border: 1px solid var(--md-sys-color-outline-variant); 
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      user-select: none;
-      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s cubic-bezier(0.2, 0, 0, 1);
-    }
-    .m3-card:hover { 
-      transform: translateY(-8px); 
-      box-shadow: var(--md-elevation-3); 
-      border-color: var(--md-sys-color-primary); 
-    }
-    
-    .card-image-wrapper {
-      width: 100%;
-      height: 170px;
-      border-radius: var(--md-shape-corner-medium);
-      overflow: hidden;
-      background: #e4e6eb;
-    }
-    .card-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    .m3-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--md-sys-color-on-surface); }
-    .m3-card p { color: var(--md-sys-color-on-surface-variant); font-size: 0.92rem; line-height: 1.6; text-align: justify; }
-
-    /* شبكة معرض الأعمال الميدانية */
-    .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .project-card { background: var(--md-sys-color-surface); padding: 24px; border-radius: var(--md-shape-corner-extra-large); box-shadow: var(--md-elevation-1); border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 14px; transition: 0.3s ease; }
-    .project-card:hover { transform: translateY(-6px); box-shadow: var(--md-elevation-3); border-color: var(--md-sys-color-primary); }
-    .project-img-wrapper { width: 100%; height: 210px; border-radius: var(--md-shape-corner-medium); overflow: hidden; background: #e4e6eb; }
-    .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-
-    @media (max-width: 768px) {
-      .top-app-bar { flex-direction: column; gap: 15px; text-align: center; padding: 20px; }
-      .nav-buttons { width: 100%; justify-content: center; }
-      .hero-text-content { padding: 30px; text-align: center; }
-      .hero-text-content h2 { font-size: 1.9rem; }
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>إمداد ستيل | الدقة والابتكار في تشكيل المعادن</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#E30613", /* أحمر فيراري العصري */
+                        "bg-main": "#F0F2F5"  /* رمادي فيسبوك */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'IBM Plex Sans', sans-serif; scroll-behavior: smooth; }
+        .scroll-container { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .scroll-container::-webkit-scrollbar { display: none; }
+        .scroll-container:active { cursor: grabbing; }
+        @keyframes reveal {
+            0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .animate-reveal { animation: reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+    </style>
 </head>
-<body>
+<body class="bg-[#F0F2F5] text-[#1C1E21]">
 
-  <div class="container">
-    <header class="top-app-bar">
-      <div class="brand-section">
-        <img src="1000000790.jpg" alt="إمداد ستيل" class="brand-logo-img">
-      </div>
-      <div class="nav-buttons">
-        <a href="#ourWorksSection" class="btn-nav">أعمالنا</a>
-        <a href="tel:0555835551" class="btn-ferrari">اتصل بنا</a>
-      </div>
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
+        <div class="flex flex-row-reverse justify-between items-center w-full px-6 md:px-16 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <img alt="إمداد ستيل" class="h-10 md:h-12 object-contain" src="1000000790.jpg" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-xl font-bold text-primary\'>AMDAD STEEL</span>'">
+            </div>
+            <nav class="hidden md:flex flex-row-reverse gap-8 items-center">
+                <a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">الرئيسية</a>
+                <a class="text-gray-600 hover:text-primary transition-colors" href="#services">خدماتنا</a>
+                <a class="text-gray-600 hover:text-primary transition-colors" href="#portfolio">أعمالنا</a>
+                <a class="text-gray-600 hover:text-primary transition-colors" href="tel:0555835551">اتصل بنا</a>
+            </nav>
+            <a href="tel:0555835551" class="bg-primary text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition-all active:scale-95">
+                اتصل بنا
+            </a>
+        </div>
     </header>
 
-    <section class="hero-panel">
-      <div class="hero-text-content">
-        <h2><span>هندسة وتشكيل الحديد،</span><br>صلابة وجودة مطلقة في التنفيذ</h2>
-        <p>نلتزم بتقديم جودة عالية ودقة في التنفيذ، بدءاً من مرحلة التصميم وحتى المنتج النهائي. نضع الابتكار والصلابة الهندسية في خدمة مشاريعكم الإنشائية والصناعية الكبرى.</p>
-      </div>
+    <section class="relative min-h-[85vh] flex items-center pt-20 overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <img class="w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        </div>
+        <div class="relative z-10 w-full px-6 md:px-16 max-w-7xl mx-auto text-right">
+            <div class="max-w-2xl ml-auto animate-reveal">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+                    إمداد ستيل: <span class="text-primary">الدقة والابتكار</span> في تشكيل المعادن
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    نحن نقدم حلولاً هندسية متكاملة في تشكيل الصلب والحديد، نعتمد على أحدث التقنيات العالمية لضمان أعلى مستويات الجودة في المشاريع الإنشائية والصناعية.
+                </p>
+                <div class="flex flex-row-reverse gap-4">
+                    <a href="#portfolio" class="bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-red-700 transition-all shadow-lg shadow-primary/30">
+                        مشاهدة سابقة أعمالنا
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <h3 class="section-title">إمكانياتنا وخدماتنا الصناعية</h3>
-    <div class="scroll-container" id="draggableContainer">
-      <div class="scroll-track">
-        
-        <div class="m3-card">
-          <div class="card-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" alt="قص الليزر للحديد">
-          </div>
-          <h3>قص الليزر</h3>
-          <p>تميز وتفوق واضح في قص الليزر عالي الدقة بمختلف السماكات والأشكال الهندسية المطابقة للرسومات الفنية المعتمدة.</p>
+    <section class="py-16 bg-white" id="services">
+        <div class="px-6 md:px-16 max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">إمكانياتنا وخدماتنا الصناعية</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="text-sm text-gray-400 mt-2">اسحب البطاقات لليمين واليسار لاستكشاف المزيد</p>
+            </div>
+            
+            <div class="scroll-container overflow-x-auto py-4 cursor-grab" id="draggableContainer">
+                <div class="flex gap-6 w-max px-4">
+                    <div class="w-72 bg-[#F0F2F5] p-6 rounded-2xl border border-gray-200 shadow-sm select-none shrink-0 hover:border-primary transition-all">
+                        <div class="w-full h-36 bg-black rounded-xl overflow-hidden mb-4">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">القطع بالليزر</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">دقة متناهية في القطع لجميع سماكات المعادن باستخدام تكنولوجيا الألياف الضوئية.</p>
+                    </div>
+                    <div class="w-72 bg-[#F0F2F5] p-6 rounded-2xl border border-gray-200 shadow-sm select-none shrink-0 hover:border-primary transition-all">
+                        <div class="w-full h-36 bg-black rounded-xl overflow-hidden mb-4">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=400&q=80">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">الثني الهيدروليكي</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">تشكيل الزوايا والأبعاد بدقة مليمترية تضمن التوافق الهندسي الكامل للمشاريع.</p>
+                    </div>
+                    <div class="w-72 bg-[#F0F2F5] p-6 rounded-2xl border border-gray-200 shadow-sm select-none shrink-0 hover:border-primary transition-all">
+                        <div class="w-full h-36 bg-black rounded-xl overflow-hidden mb-4">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1565462999718-f838b38dce06?auto=format&fit=crop&w=400&q=80">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">الدرفلة والتشكيل</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">تحويل الصفائح المعدنية وتشكيلها إلى مكونات هيكلية متقدمة تلبي احتياجاتكم الفنية.</p>
+                    </div>
+                    <div class="w-72 bg-[#F0F2F5] p-6 rounded-2xl border border-gray-200 shadow-sm select-none shrink-0 hover:border-primary transition-all">
+                        <div class="w-full h-36 bg-black rounded-xl overflow-hidden mb-4">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=400&q=80">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">اللحام الاحترافي</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">ربط هيكلي معتمد ومقاوم للضغوط العالية لضمان متانة وطول عمر المنتجات.</p>
+                    </div>
+                    <div class="w-72 bg-[#F0F2F5] p-6 rounded-2xl border border-gray-200 shadow-sm select-none shrink-0 hover:border-primary transition-all">
+                        <div class="w-full h-36 bg-black rounded-xl overflow-hidden mb-4">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80">
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">تصنيع مخصص</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">حلول مخصصة ثلاثية الأبعاد (3D) للمشاريع المعمارية والقوالب الهندسية الفريدة.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="m3-card">
-          <div class="card-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=400&q=80" alt="ماكينة ثني الأنابيب والصاج">
-          </div>
-          <h3>ثني الأنابيب</h3>
-          <p>إمكانيات متطورة ومتقدمة لتنفيذ أعمال ثني وتشكيل الأنابيب المعدنية والصاج والنهويات بمختلف الأقطار والزوايا الهندسية.</p>
-        </div>
-        
-        <div class="m3-card">
-          <div class="card-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1565462999718-f838b38dce06?auto=format&fit=crop&w=400&q=80" alt="درفلة وتشكيل المعادن">
-          </div>
-          <h3>الدرفلة والتشكيل</h3>
-          <p>خدمات متكاملة لدرفلة وتشكيل المعادن والمنتجات الإنشائية المتعددة لتغطية أدق تفاصيل ومقاييس المشاريع الصناعية حسب الطلب.</p>
-        </div>
-        
-        <div class="m3-card">
-          <div class="card-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=400&q=80" alt="اللحام بالأرجون والليزر الصناعي">
-          </div>
-          <h3>اللحام بالأرجون والليزر</h3>
-          <p>أعمال لحام احترافية فائقة القوة والمتانة لمنتجات الاستانلس ستيل والحديد تحت إشراف هندسي يضمن تحمل ضغوط الأعمال الإنشائية.</p>
-        </div>
-        
-        <div class="m3-card">
-          <div class="card-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" alt="التصاميم والحلول الهندسية المخصصة">
-          </div>
-          <h3>تصنيع متكامل حسب الطلب</h3>
-          <p>حلول معدنية وهندسية شاملة تتضمن توفير تصميم ثلاثي الأبعاد (3D) قبل البدء الفعلي لتصنيع القوالب الخرسانية، المحاقن، والمظلات.</p>
-        </div>
-
-      </div>
-    </div>
-
-    <h3 class="section-title" id="ourWorksSection">معرض المشاريع والأعمال الميدانية</h3>
-    <section class="showcase-grid" id="cloudflareDynamicGrid">
-      <div class="project-card">
-        <div class="project-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80" alt="توثيق أعمال إمداد">
-        </div>
-        <div class="project-card-info">
-          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; margin-top:10px;">مشروع تصنيع الهياكل الإنشائية</h3>
-          <p style="color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; line-height: 1.6;">تنفيذ وتجهيز القوالب والقطع المعدنية الثقيلة للمباني والمصانع بالاعتماد على دقة قص الليزر المتطور واللحام بالأرجون عالي المتانة.</p>
-        </div>
-      </div>
     </section>
-  </div>
 
-  <script>
-    // تفعيل خاصية السحب يمين ويسار بالماوس وللمس والشاشات الذكية
-    const slider = document.getElementById('draggableContainer');
-    let isDown = false; let startX; let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => { isDown = false; });
-    slider.addEventListener('mouseup', () => { isDown = false; });
-    slider.addEventListener('mousemove', (e) => {
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // جلب ديناميكي فوري وقراءة المشاريع المرفوعة من لوحة التحكم السرية
-    window.addEventListener('load', function() {
-      const storedDb = localStorage.getItem('cloudflare_amdad_db');
-      if (storedDb) {
-        const projects = JSON.parse(storedDb);
-        const dynamicGrid = document.getElementById('cloudflareDynamicGrid');
-        projects.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'project-card';
-          card.innerHTML = `
-            <div class="project-img-wrapper">
-              <img src="${p.image}" alt="${p.title}">
+    <section class="py-16 bg-[#F0F2F5]" id="portfolio">
+        <div class="px-6 md:px-16 max-w-7xl mx-auto text-right">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 border-r-4 border-primary pr-4">مشاريعنا المنفذة (أعمالنا)</h2>
+                <p class="text-gray-500 mt-2">توثيق ميداني لأحدث المشاريع والهياكل المعدنية التي تم تسليمها بنجاح.</p>
             </div>
-            <div class="project-card-info">
-              <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; margin-top:10px;">${p.title}</h3>
-              <p style="color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; line-height: 1.6;">${p.description}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cloudflareDynamicGrid">
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all">
+                    <div class="w-full h-52 bg-gray-200 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">تنفيذ الهياكل المعدنية للمستودعات العملاقة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">تصميم وبناء عوارض فولاذية عالية التحمل للمساحات اللوجستية والمصانع الكبرى بمواصفات هندسية دقيقة.</p>
+                    </div>
+                </div>
             </div>
-          `;
-          dynamicGrid.insertBefore(card, dynamicGrid.firstChild);
+        </div>
+    </section>
+
+    <footer class="bg-neutral-900 text-white py-8 text-center text-sm border-t border-gray-800">
+        <p>© 2026 إمداد ستيل. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const slider = document.getElementById('draggableContainer');
+        let isDown = false; let startX; let scrollLeft;
+        slider.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
+        slider.addEventListener('mouseleave', () => { isDown = false; });
+        slider.addEventListener('mouseup', () => { isDown = false; });
+        slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; });
+
+        // استدعاء وقراءة الأعمال المرفوعة من لوحة التحكم بشكل تلقائي
+        window.addEventListener('load', function() {
+            const storedDb = localStorage.getItem('cloudflare_amdad_db');
+            if (storedDb) {
+                const projects = JSON.parse(storedDb);
+                const dynamicGrid = document.getElementById('cloudflareDynamicGrid');
+                projects.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all';
+                    card.innerHTML = `
+                        <div class="w-full h-52 bg-gray-200 overflow-hidden">
+                            <img class="w-full h-full object-cover" src="${p.image}" alt="${p.title}">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">${p.title}</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">${p.description}</p>
+                        </div>
+                    `;
+                    dynamicGrid.insertBefore(card, dynamicGrid.firstChild);
+                });
+            }
         });
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
