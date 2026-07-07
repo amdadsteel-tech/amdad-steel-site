@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة تحكم إمداد ستيل</title>
+    <title>لوحة إدارة إمداد ستيل</title>
 </head>
 <body>
-    <h2>رفع صور المشاريع</h2>
-    <input type="file" id="fileInput" accept="image/*">
-    <input type="text" id="descInput" placeholder="اكتب وصف الصورة هنا...">
-    <button onclick="uploadImage()">رفع وحفظ</button>
-    <p id="status"></p>
+    <h1>إضافة مشروع جديد</h1>
+    <form id="projectForm">
+        <input type="text" id="title" placeholder="عنوان المشروع" required><br><br>
+        <textarea id="description" placeholder="وصف المشروع"></textarea><br><br>
+        <input type="file" id="file" required><br><br>
+        <button type="submit">حفظ المشروع</button>
+    </form>
     <script>
-        async function uploadImage() {
-            const file = document.getElementById('fileInput').files[0];
-            const desc = document.getElementById('descInput').value;
-            const status = document.getElementById('status');
-            if(!file) return alert("اختر صورة أولاً");
-            status.innerText = "جاري الرفع...";
+        document.getElementById('projectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             const formData = new FormData();
-            formData.append('file', file);
-            formData.append('desc', desc);
-            const res = await fetch('/api/upload', { method: 'POST', body: formData });
-            if(res.ok) { status.innerText = "تم الرفع بنجاح!"; }
-            else { status.innerText = "حدث خطأ."; }
-        }
+            formData.append('title', document.getElementById('title').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('file', document.getElementById('file').files[0]);
+            
+            // تأكد من وضع رابط الـ Worker الخاص بك هنا
+            const res = await fetch('https://amdad-admin.amdad-steel.workers.dev', { method: 'POST', body: formData });
+            if(res.ok) alert('تم الحفظ بنجاح!');
+            else alert('حدث خطأ أثناء الحفظ');
+        });
     </script>
 </body>
 </html>
