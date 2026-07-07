@@ -2,16 +2,19 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة إدارة إمداد ستيل</title>
+    <title>إدارة إمداد ستيل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>إضافة مشروع جديد</h1>
-    <form id="projectForm">
-        <input type="text" id="title" placeholder="عنوان المشروع" required><br><br>
-        <textarea id="description" placeholder="وصف المشروع"></textarea><br><br>
-        <input type="file" id="file" required><br><br>
-        <button type="submit">حفظ المشروع</button>
-    </form>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">رفع مشاريع إمداد ستيل</h1>
+        <form id="projectForm" class="space-y-4">
+            <input type="text" id="title" placeholder="عنوان المشروع" class="w-full p-2 border rounded" required>
+            <textarea id="description" placeholder="وصف المشروع" class="w-full p-2 border rounded"></textarea>
+            <input type="file" id="file" class="w-full p-2" required>
+            <button type="submit" class="w-full bg-red-600 text-white p-3 rounded font-bold">رفع وحفظ المشروع</button>
+        </form>
+    </div>
     <script>
         document.getElementById('projectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -20,10 +23,10 @@
             formData.append('description', document.getElementById('description').value);
             formData.append('file', document.getElementById('file').files[0]);
             
-            // تأكد من وضع رابط الـ Worker الخاص بك هنا
+            // تأكد من رابط الـ Worker الخاص بك هنا
             const res = await fetch('https://amdad-admin.amdad-steel.workers.dev', { method: 'POST', body: formData });
             if(res.ok) alert('تم الحفظ بنجاح!');
-            else alert('حدث خطأ أثناء الحفظ');
+            else alert('حدث خطأ');
         });
     </script>
 </body>
